@@ -1,0 +1,25 @@
+body {
+    font-family: 'Lora', serif;
+    color: #333333; /* Dark Charcoal */
+    background-color: #FDF6F0; /* Vanilla Cream */
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Pacifico', cursive;
+    color: #F75C5C; /* Cherry Red */
+}
+
+section {
+    background-color: #F9E5E4; /* Strawberry Swirl */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+a {
+    color: #F75C5C; /* Cherry Red */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
