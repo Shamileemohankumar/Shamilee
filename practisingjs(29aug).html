@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="/home/finstein-emp/Desktop/practise/icecresmjson/jquery-3.7.1.min.js"></script>
+    <script>
+const books = [ 
+    { title: "To Kill a Mockingbird", author: "Harper Lee", pages: 281, genre:"Fiction" }, 
+    { title: "1984", author: "George Orwell", pages: 328, genre: "Science Fiction" }, 
+    { title:"Pride and Prejudice", author: "Jane Austen", pages: 432, genre: "Romance" },
+    { title: "The Catcher in the Rye", author: "J.D. Salinger", pages: 234, genre: "Fiction" }, 
+    { title: "Brave New World", author: "Aldous Huxley", pages: 311, genre: "Science Fiction" } 
+];
+//Use forEach to log the title and author of each book to the console.
+books.forEach(e=>{
+    console.log(e.title,"By",e.author);
+})
+//Use map to create a new array containing only the titles of the books
+const titles=books.map(e=>e.title)
+console.log(titles);
+//)Use filter to create a new array with books that have more than 300 pages.
+const pagecount=books.filter(e=>e.pages>300)
+console.log(pagecount);
+//Use reduce to calculate the total number of pages for all books combined.
+let count=books.reduce((accumulator,e)=>{
+    return accumulator+e.pages;
+},0);
+console.log(count);
+//Use a combination of filter and map to create an array of authors who wrote Science Fiction books.
+const sci=books.filter(e=>e.genre==="Science Fiction")
+const sciauth=sci.map(e=>e.author)
+console.log(sciauth)
+const a = [1,4,6,2,7];
+//Map Example: Doubles each number in the list and displays the result.
+const doub=a.map(e=>e*2)
+console.log(doub);
+//Filter Example: Filters out even numbers from the list and displays them.
+const even=a.filter(e => e%2 === 0)
+console.log(even);
+//Reduce Example: Calculates and displays the sum of all numbers.
+const sum=a.reduce((accumulator,e)=>{
+    return accumulator+e;
+},0);
+console.log(sum);
+//forEach: Logs each number in the list.
+a.forEach(e=>{
+    console.log(e);
+});
+const products = [ 
+    { name: "Laptop", price: 1200, inStock: true }, 
+    { name: "Phone", price:800, inStock: false }, 
+    { name: "Tablet", price: 600, inStock: true }, 
+    { name: "Monitor", price: 300, inStock: true } 
+    ];
+//Map Example (Product Names): Extracts and displays only the names of the products.
+const product=products.map(e=>e.name);
+console.log(product);
+//Filter Example (Products in Stock): Filters and displays products that are in stock.
+const stock=products.filter(e=>e.inStock==true)
+console.log(stock)
+//Reduce Example (Total Price of All Products): Calculates and displays the total price of all products.
+const total=products.reduce((accumulator,e)=>{
+    return accumulator+e.price;
+},0);
+console.log(total);
+//forEach Example (Display Product Details): Loops through the product list and displays detailed information about each product.
+products.forEach(e=>{
+    console.log(e);
+});
+</script>
+</body>
+</html>
