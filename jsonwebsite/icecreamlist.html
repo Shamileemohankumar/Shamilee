@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scoop of the Day</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Fredoka', sans-serif;
+            background: 
+                linear-gradient(135deg, #FF85A2 25%, transparent 25%) -50px 0,
+                linear-gradient(225deg, #FF85A2 25%, transparent 25%) -50px 0,
+                linear-gradient(315deg, #FF85A2 25%, transparent 25%),
+                linear-gradient(45deg, #FF85A2 25%, transparent 25%);
+            background-size: 100px 100px;
+            background-color: #FFA07A;
+            animation: backgroundMove 60s linear infinite;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes backgroundMove {
+            0% {
+                background-position: 0 0, 0 0, 0 0, 0 0;
+            }
+            100% {
+                background-position: 500px 500px, 500px 500px, 500px 500px, 500px 500px;
+            }
+        }
+
+        header {
+            background-color: #FF85A2;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .ice-cream-icon {
+            font-size: 2rem;
+            position: absolute;
+            opacity: 0.6;
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            max-width: 1200px;
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 800px;
+            width: 100%;
+        }
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            height: 300px; /* Reduced overall card height */
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        .card-image-container {
+            width: 100%;
+            height: 250px; /* Increased height for larger images */
+            overflow: hidden;
+        }
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        .card:hover .card-image {
+            transform: scale(1.05); /* Slight zoom effect on hover */
+        }
+        .card-content {
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            flex-grow: 1;
+        }
+        .card h2 {
+            margin: 0 0 0.25rem 0;
+            color: #FF85A2;
+            font-size: 1.2rem;
+        }
+        .card p {
+            margin: 0;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        .flavor-grid, .ingredient-list, .allergen-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .flavor-card, .ingredient-card, .allergen-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 1rem;
+            transition: transform 0.3s ease;
+        }
+        .flavor-card:hover, .ingredient-card:hover, .allergen-card:hover {
+            transform: translateY(-5px);
+        }
+        .flavor-name, .ingredient-name, .allergen-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0 0 0.5rem 0;
+            color: #FF85A2;
+        }
+        .flavor-details, .ingredient-details, .allergen-details {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0;
+            line-height: 1.4;
+        }
+        .popularity-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .ice-cream-cone {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100px;
+        }
+        .cone {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-top: 100px solid #D2691E;
+        }
+        .scoop {
+            width: 100px;
+            border-radius: 50% 50% 0 0;
+            background-color: #FF85A2;
+            transition: height 0.5s ease;
+        }
+        .flavor-name {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #333;
+            font-size: 14px;
+        }
+        .popularity-level {
+            margin-top: 5px;
+            font-size: 14px;
+            color: #666;
+        }
+        .back-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #FF85A2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+        .back-button:hover {
+            background-color: #FF6B8E;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .back-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        .back-button::before {
+            content: '←';
+            margin-right: 8px;
+            font-size: 20px;
+        }
+        .page-content {
+            padding-bottom: 60px; /* Add space for the fixed back button */
+        }
+        .popularity-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            width: 100%;
+            max-width: 600px;
+        }
+        .popularity-card h3 {
+            color: #FF85A2;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        .popularity-flavors {
+            display: flex;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+        .ice-cream-cone {
+            flex-shrink: 0;
+        }
+        .flavor-list {
+            flex-grow: 1;
+        }
+        .flavor-list h4 {
+            color: #FF85A2;
+            margin-top: 0;
+        }
+        .flavor-list ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        .flavor-list li {
+            margin-bottom: 0.5rem;
+        }
+        .popularity-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        .popularity-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: calc(100vh - 200px); /* Adjust based on your header and title height */
+            overflow-y: auto;
+        }
+        .popularity-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .popularity-card h3 {
+            color: #FF85A2;
+            margin: 0 0 0.5rem 0;
+        }
+        .popularity-flavors {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .ice-cream-cone {
+            flex-shrink: 0;
+            width: 60px;
+        }
+        .scoop {
+            width: 60px;
+            border-radius: 30px 30px 0 0;
+            background-color: #FF85A2;
+        }
+        .cone {
+            width: 0;
+            height: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+            border-top: 60px solid #D2691E;
+        }
+        .flavor-list {
+            flex-grow: 1;
+        }
+        .flavor-list h4 {
+            margin: 0;
+            color: #FF85A2;
+        }
+        .flavor-list p {
+            margin: 0.5rem 0 0 0;
+            font-size: 0.9rem;
+        }
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .carousel {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .carousel-slide {
+            flex: 0 0 100%;
+        }
+        .carousel-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(255, 133, 162, 0.7);
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .carousel-button.prev {
+            left: 10px;
+        }
+        .carousel-button.next {
+            right: 10px;
+        }
+        .popularity-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            padding: 1rem;
+            margin: 1rem;
+            text-align: center;
+        }
+        .popularity-card h3 {
+            color: #FF85A2;
+            margin-bottom: 0.5rem;
+        }
+        .star-rating {
+            font-size: 24px;
+            color: gold;
+            margin-bottom: 1rem;
+        }
+        .flavor-list {
+            text-align: left;
+        }
+        .flavor-list h4 {
+            color: #FF85A2;
+            margin-bottom: 0.5rem;
+        }
+        .flavor-list ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .flavor-list li {
+            margin-bottom: 0.25rem;
+        }
+
+        .popularity-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+            background: linear-gradient(135deg, #FF85A2, #FFA07A);
+            color: white;
+        }
+
+        .popularity-page h2 {
+            text-align: center;
+            color: white;
+            margin: 0 0 30px 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .popularity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .popularity-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            width: 280px;
+            margin-bottom: 20px;
+        }
+
+        .card-content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .star-rating {
+            font-size: 36px;
+            color: #FFD700;
+            margin-bottom: 15px;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .flavor-list, .hidden-flavors {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+
+        .flavor-pill {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+        }
+
+        .flavor-pill:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+
+        .show-more-btn {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: center;
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .show-more-btn:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .arrow-down {
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-top: 6px solid white;
+            transition: transform 0.3s ease;
+        }
+
+        .show-more-btn.active .arrow-down {
+            transform: rotate(180deg);
+        }
+
+        .back-button {
+            background-color: white;
+            color: #FF85A2;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: center;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-button:hover {
+            background-color: #FF85A2;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .flavor-card h3 {
+            color: #FF85A2;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Scoop of the Day</h1>
+        <div class="ice-cream-icon" style="top: 10px; left: 10px;">🍦</div>
+        <div class="ice-cream-icon" style="top: 60px; right: 20px;">🍨</div>
+        <div class="ice-cream-icon" style="bottom: 15px; left: 30%;">🍧</div>
+    </header>
+    <div class="container" id="main-content">
+        <!-- Content will be dynamically inserted here -->
+    </div>
+    <script>
+        let icecreamData = [];
+
+        async function loadData() {
+            try {
+                const response = await fetch('icecream.json');
+                icecreamData = await response.json();
+            } catch (error) {
+                console.error('Error loading ice cream data:', error);
+            }
+        }
+
+        function showMainMenu() {
+            const mainContent = document.getElementById('main-content');
+            mainContent.innerHTML = `
+                <div class="card-grid">
+                    <div class="card" onclick="showFlavors()">
+                        <div class="card-image-container">
+                            <img src="https://assets.isu.pub/document-structure/210701055751-d6e2081e9c11b5367f9b6d75fd440f2e/v1/d7c1f9cf3da86a2eef5ad85c1a627fd8.jpeg?width=720&quality=85%2C50" alt="Ice Cream Flavors" class="card-image">
+                        </div>
+                        <div class="card-content">
+                            <h2>Flavors</h2>
+                            <p>Explore our delicious ice cream flavors</p>
+                        </div>
+                    </div>
+                    <div class="card" onclick="showIngredients()">
+                        <div class="card-image-container">
+                            <img src="https://media.istockphoto.com/id/1221605468/photo/homemade-strawberry-ice-cream.jpg?s=612x612&w=0&k=20&c=iz3afDHKI81N_1rbtmqK_Zuuvm68AHj5LZOp0ecujkI=" alt="Ice Cream Ingredients" class="card-image">
+                        </div>
+                        <div class="card-content">
+                            <h2>Ingredients</h2>
+                            <p>Discover flavors based on ingredients</p>
+                        </div>
+                    </div>
+                    <div class="card" onclick="showPopularity()">
+                        <div class="card-image-container">
+                            <img src="https://www.barry-callebaut.com/sites/default/files/styles/paragraph_text_and_image_top_bottom/public/2024-01/ice-cream-trends-2024-barry-callebaut-report_cover_preview.jpg?itok=JZEAPjy7" alt="Popular Ice Creams" class="card-image">
+                        </div>
+                        <div class="card-content">
+                            <h2>Popularity</h2>
+                            <p>See our most popular flavors visualized</p>
+                        </div>
+                    </div>
+                    <div class="card" onclick="showAllergens()">
+                        <div class="card-image-container">
+                            <img src="https://dailytrust.com/wp-content/uploads/2019/12/Why-we-should-take-food-allergies-seriously-640x400.jpg" alt="Ice Cream Allergens" class="card-image">
+                        </div>
+                        <div class="card-content">
+                            <h2>Allergens</h2>
+                            <p>Find ice creams sorted by allergens</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function showFlavors() {
+            const mainContent = document.getElementById('main-content');
+            mainContent.innerHTML = `
+                <div class="page-content">
+                    <h2 style="text-align: center; color: #FF85A2;">Ice Cream Flavors</h2>
+                    <div class="flavor-grid"></div>
+                </div>
+                <button class="back-button" onclick="showMainMenu()">Back to Menu</button>
+            `;
+            const flavorGrid = mainContent.querySelector('.flavor-grid');
+
+            icecreamData.forEach(flavor => {
+                const flavorCard = document.createElement('div');
+                flavorCard.className = 'flavor-card';
+                flavorCard.innerHTML = `
+                    <h3 style="color: #FF85A2;">${flavor.flavor}</h3>
+                    <p>Ingredients: ${flavor.ingredients.join(', ')}</p>
+                    <p>Popularity: ${'★'.repeat(flavor.popularity_level)}${'☆'.repeat(5 - flavor.popularity_level)}</p>
+                `;
+                flavorGrid.appendChild(flavorCard);
+            });
+        }
+
+        function showIngredients() {
+            const mainContent = document.getElementById('main-content');
+            mainContent.innerHTML = `
+                <div class="page-content">
+                    <div class="ingredient-list"></div>
+                </div>
+                <button class="back-button" onclick="showMainMenu()">Back to Menu</button>
+            `;
+            const ingredientList = mainContent.querySelector('.ingredient-list');
+
+            const ingredientMap = new Map();
+            icecreamData.forEach(flavor => {
+                flavor.ingredients.forEach(ingredient => {
+                    if (!ingredientMap.has(ingredient)) {
+                        ingredientMap.set(ingredient, []);
+                    }
+                    ingredientMap.get(ingredient).push(flavor.flavor);
+                });
+            });
+
+            ingredientMap.forEach((flavors, ingredient) => {
+                const ingredientCard = document.createElement('div');
+                ingredientCard.className = 'ingredient-card';
+                ingredientCard.innerHTML = `
+                    <h2 class="ingredient-name">${ingredient}</h2>
+                    <p class="ingredient-details"><strong>Flavors:</strong> ${flavors.join(', ')}</p>
+                `;
+                ingredientList.appendChild(ingredientCard);
+            });
+        }
+
+        function showPopularity() {
+            const mainContent = document.getElementById('main-content');
+            mainContent.innerHTML = `
+                <div class="page-content popularity-page">
+                    <h2>Ice Cream Popularity</h2>
+                    <div class="popularity-grid"></div>
+                </div>
+                <button class="back-button" onclick="showMainMenu()">Back to Menu</button>
+            `;
+            const popularityGrid = mainContent.querySelector('.popularity-grid');
+
+            // Group flavors by popularity level
+            const popularityGroups = {5: [], 4: [], 3: [], 2: [], 1: []};
+            icecreamData.forEach(flavor => {
+                popularityGroups[flavor.popularity_level].push(flavor);
+            });
+
+            // Create a card for each popularity level
+            for (let i = 5; i >= 1; i--) {
+                if (popularityGroups[i].length > 0) {
+                    const card = document.createElement('div');
+                    card.className = 'popularity-card';
+                    const flavors = popularityGroups[i];
+                    const initialFlavors = flavors.slice(0, 5);
+                    const remainingFlavors = flavors.slice(5);
+
+                    card.innerHTML = `
+                        <div class="card-content">
+                            <div class="star-rating">${'★'.repeat(i)}</div>
+                            <div class="flavor-list">
+                                ${initialFlavors.map(flavor => `<span class="flavor-pill">${flavor.flavor}</span>`).join('')}
+                            </div>
+                            ${remainingFlavors.length > 0 ? `
+                                <div class="hidden-flavors" style="display: none;">
+                                    ${remainingFlavors.map(flavor => `<span class="flavor-pill">${flavor.flavor}</span>`).join('')}
+                                </div>
+                                <button class="show-more-btn">
+                                    <span>Show More</span>
+                                    <i class="arrow-down"></i>
+                                </button>
+                            ` : ''}
+                        </div>
+                    `;
+                    popularityGrid.appendChild(card);
+
+                    if (remainingFlavors.length > 0) {
+                        const showMoreBtn = card.querySelector('.show-more-btn');
+                        const hiddenFlavors = card.querySelector('.hidden-flavors');
+                        showMoreBtn.addEventListener('click', () => {
+                            hiddenFlavors.style.display = hiddenFlavors.style.display === 'none' ? 'flex' : 'none';
+                            showMoreBtn.classList.toggle('active');
+                            showMoreBtn.querySelector('span').textContent = hiddenFlavors.style.display === 'none' ? 'Show More' : 'Show Less';
+                        });
+                    }
+                }
+            }
+        }
+
+        function showAllergens() {
+            const mainContent = document.getElementById('main-content');
+            mainContent.innerHTML = `
+                <div class="page-content">
+                    <div class="allergen-list"></div>
+                </div>
+                <button class="back-button" onclick="showMainMenu()">Back to Menu</button>
+            `;
+            const allergenList = mainContent.querySelector('.allergen-list');
+
+            const allergenMap = new Map();
+            allergenMap.set('None', []);
+
+            icecreamData.forEach(flavor => {
+                if (flavor.allergen.length === 0) {
+                    allergenMap.get('None').push(flavor.flavor);
+                } else {
+                    flavor.allergen.forEach(allergen => {
+                        if (!allergenMap.has(allergen)) {
+                            allergenMap.set(allergen, []);
+                        }
+                        allergenMap.get(allergen).push(flavor.flavor);
+                    });
+                }
+            });
+
+            allergenMap.forEach((flavors, allergen) => {
+                const allergenCard = document.createElement('div');
+                allergenCard.className = 'allergen-card';
+                allergenCard.innerHTML = `
+                    <h2 class="allergen-name">${allergen}</h2>
+                    <p class="allergen-details"><strong>Flavors:</strong> ${flavors.join(', ')}</p>
+                `;
+                allergenList.appendChild(allergenCard);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadData();
+            showMainMenu();
+        });
+    </script>
+</body>
+</html>
