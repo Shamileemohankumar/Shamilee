@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="/home/finstein-emp/Desktop/practise/icecresmjson/jquery-3.7.1.min.js"></script>
+    <script>
+        //1
+  const fruits = [
+    {
+      "name": "Apple",
+      "color": "Red"
+    },
+    {
+      "name": "Banana",
+      "color": "Yellow"
+    },
+    {
+      "name": "Orange",
+      "color": "Orange"
+    }
+  ]
+  fruits.forEach(e=>{
+    console.log(e.name);
+  })
+    //2
+const a=[10,20,30,40]
+let z=a.reduce((accumulator,e)=>{
+    return accumulator+e;
+},0);
+console.log(z);
+    //3
+const prod=[
+    {
+      "name": "Laptop",
+      "price": 1200.99,
+      "quantity": 10,
+      "totalCost": 12009.90
+    },
+    {
+      "name": "Smartphone",
+      "price": 799.49,
+      "quantity": 25,
+      "totalCost": 19987.25
+    },
+    {
+      "name": "Headphones",
+      "price": 199.99,
+      "quantity": 50,
+      "totalCost": 9999.50
+    }
+  ];
+ let cost=prod.reduce((accumulator,e)=>{
+    return accumulator+(e.price*e.quantity);
+},0);
+console.log(cost);
+    //4
+b=[5,12,8,130,44];
+let c=b.filter(e=>e>10);
+console.log(c);
+    //5
+let fruit=["apple","banana","cherry","date"];
+let filfruit=fruit.filter(e=>e.includes('a'))
+console.log(filfruit);
+    //6
+let colours=["red","green","blue"];
+let ispre=colours.includes("green");
+console.log(ispre);
+    //7
+let x=[1,3,5,7,9];
+let isx=x.includes(7);
+console.log(isx);
+    //8
+let q=[1,2,3,4,5];
+let isq=q.map(e=>e*e);
+console.log(isq);
+    //9
+let h=["hello","world"];
+let H=h.map(e=>e.toUpperCase())
+console.log(H);
+    //10
+let f=[1,2,[3,4],[5,[6,7]]]
+let newf=f.flat(1);
+console.log(newf);
+let newff=f.flat(Infinity);
+console.log(newff);
+    //11
+let w=['a','b','c','d','e','f'];
+let len=w.length;
+console.log(len);
+    //12
+let r=[1,2,3,4,5,6,7];
+let s=r.slice(4,7);
+console.log(s);
+    //13
+let array=["apple","banana","cherry"];
+let y=array.shift();
+console.log(array);
+    </script>
+</body>
+</html>
