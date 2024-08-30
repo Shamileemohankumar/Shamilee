@@ -1,0 +1,47 @@
+.container1{
+    height: 50px;
+    gap:2 px;
+    display:flex;
+    padding:2px;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(241, 128, 239);
+}
+.container2{
+    height: 50px;
+    gap:2 px;
+    display:flex;
+    padding:2px;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(232, 171, 236);
+}
+.cardcontainer{
+    display: flex;
+    justify-content:center;
+    gap: 16px; /* Space between the cards */
+  }
+.c10{
+    display: flex;
+    justify-content: center;
+    gap: 16px; 
+    height: 50px;
+    width: 80%;
+    background-color: rgb(92, 43, 94);
+}
+.c3{
+    display: flex;
+    justify-content: center;
+    gap: 16px; 
+    height: 50px;
+    width: 33.333%;
+    background-color: rgb(92, 43, 94); 
+}
+.c2{
+    display: flex;
+    justify-content: center;
+    gap: 16px; 
+    height: 50px;
+    width: 16.665%;
+    background-color: rgb(92, 43, 94); 
+}

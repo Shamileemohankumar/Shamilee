@@ -1,0 +1,101 @@
+.container1{
+    height: 50px;
+    gap:2 px;
+    display:flex;
+    padding:2px;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(13, 13, 74);
+}
+.container2{
+    height: 50px;
+    gap:2 px;
+    display:flex;
+    padding:2px;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(68, 68, 158);
+}
+.container3{
+    height: 50px;
+    gap:2 px;
+    display:flex;
+    padding:2px;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(51, 51, 197);
+}
+.container4{
+    margin-top: 10px;
+    height: 50px;
+    gap:2 px;
+    display:flex;
+    padding:2px;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(13, 13, 74);
+}
+.container5{
+    margin-top: 10px;
+    height: 50px;
+    gap:2 px;
+    display:flex;
+    padding:2px;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(31, 31, 131);
+}
+.container6{
+    margin-top: 10px;
+    height: 50px;
+    gap:2 px;
+    display:flex;
+    padding:2px;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(105, 105, 237);
+}
+.c2{
+       display: flex;
+       justify-content: space-between;
+        gap: 16px; 
+        height: 50px;
+        width:50%;
+        background-color: rgb(60, 114, 215);
+    }
+.cardcontainer{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px; /* Space between the cards */
+  }
+  .c3{
+    display: flex;
+    justify-content: space-between;
+     gap: 16px; 
+     height: 50px;
+     width:50%;
+     background-color: rgb(35, 82, 169);
+ }
+ .cardcontainer1{
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px; /* Space between the cards */
+  }
+ .c1{
+    display: flex;
+    justify-content: space-between;
+     gap: 16px; 
+     height: 50px;
+     width:12%;
+     background-color: rgb(35, 82, 169);
+ }
+ .c10{
+    display: flex;
+    justify-content: space-between;
+     gap: 16px; 
+     height: 50px;
+     width: 80%;
+     background-color: rgb(43, 61, 94);
+ }
